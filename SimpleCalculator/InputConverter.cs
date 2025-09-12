@@ -6,7 +6,18 @@ namespace SimpleCalculator
     {
         public double ConvertInputToNumeric(string argTextInput)
         {
-            return 0;
+            double value = 0;
+
+            if (double.TryParse(argTextInput, out value))
+            {
+                Console.WriteLine($"Parsed number: {value}");
+            }
+            else
+            {
+                Console.WriteLine("Invalid number format.");
+            }
+
+            return value;
         }
     }
 }

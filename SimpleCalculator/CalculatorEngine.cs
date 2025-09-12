@@ -8,8 +8,26 @@ namespace SimpleCalculator
         {
             double result = 0;
 
-            if (argOperation == "+" || argOperation.ToLower() == "add") {
-                result = argFirstNumber + argSecondNumber;
+            switch (argOperation)
+            {
+                case "+":
+                    result = (argFirstNumber + argSecondNumber);
+                    break;
+                case "-":
+                    result = (argFirstNumber - argSecondNumber);
+                    break;
+                case "*":
+                    result = (argFirstNumber * argSecondNumber);
+                    break;
+                case "/":
+                    result = (argFirstNumber / argSecondNumber);
+                    break;
+                case "%":
+                    result = (argFirstNumber % argSecondNumber);
+                    break;
+                default:
+                    Console.WriteLine("Invalid Operator detected");
+                    break;
             }
 
             return result;
