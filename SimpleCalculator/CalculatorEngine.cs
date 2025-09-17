@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
     public class CalculatorEngine
     {
-        public double Calculate (string argOperation, double argFirstNumber, double argSecondNumber)
+        public double? Calculate (string argOperation, double argFirstNumber, double argSecondNumber)
         {
-            double result = 0;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+
+            double? result = 0;
 
             switch (argOperation)
             {
@@ -20,13 +25,19 @@ namespace SimpleCalculator
                     result = (argFirstNumber * argSecondNumber);
                     break;
                 case "/":
-                    result = (argFirstNumber / argSecondNumber);
-                    break;
+                    if (!(argSecondNumber == 0)){
+                        result = (argFirstNumber / argSecondNumber);
+                    }
+                    else{
+                        throw new DivideByZeroException("Cannot divide by zero");
+                    }
+                        break;
                 case "%":
                     result = (argFirstNumber % argSecondNumber);
                     break;
                 default:
-                    Console.WriteLine("Invalid Operator detected");
+                    result = null;
+                    Console.WriteLine(Properties.Constants.InvalidOperatorPrompt);
                     break;
             }
 

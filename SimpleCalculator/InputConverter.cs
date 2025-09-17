@@ -1,23 +1,31 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
     public class InputConverter
     {
-        public double ConvertInputToNumeric(string argTextInput)
+        public static double? ConvertInputToNumeric(string argTextInput)
         {
-            double value = 0;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-CA");
 
+            double value = 0;
+            double? returnedValue = null;
+            
             if (double.TryParse(argTextInput, out value))
             {
-                Console.WriteLine($"Parsed number: {value}");
+                Console.WriteLine(Properties.Constants.ParsedValuePrompt + $"{value}");
+                returnedValue = value;
             }
             else
             {
-                Console.WriteLine("Invalid number format.");
+                Console.WriteLine(Properties.Constants.InvalidPrompt);
+                returnedValue = null;
             }
 
-            return value;
+            return returnedValue;
         }
     }
 }

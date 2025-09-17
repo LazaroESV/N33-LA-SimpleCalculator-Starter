@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
@@ -8,27 +10,59 @@ namespace SimpleCalculator
         {
             try
             {
-                // Class to convert user input
-                InputConverter inputConverter = new InputConverter();
-
                 // Class to perform actual calculations
                 CalculatorEngine calculatorEngine = new CalculatorEngine();
 
-                double firstNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                double secondNumber = inputConverter.ConvertInputToNumeric(Console.ReadLine());
-                string operation = Console.ReadLine();
+                double? firstNumber = null;
+                double? secondNumber = null;
 
-                double result = calculatorEngine.Calculate(operation, firstNumber, secondNumber);
-
-                if(result != 0)
+                while (firstNumber == null)
                 {
-                    Console.WriteLine($"Result: {result}");
+                    firstNumber = InputConverter.ConvertInputToNumeric(Console.ReadLine());
+                }
+                while (secondNumber == null)
+                {
+                    secondNumber = InputConverter.ConvertInputToNumeric(Console.ReadLine());
+                }
+                
+                double? result = null;
+                string operation = null;
 
+                while (result == null){
+                    operation = Console.ReadLine();
+                    result = calculatorEngine.Calculate(operation, (double)firstNumber, (double)secondNumber);
+                }
+
+                switch (operation)
+                {
+                    case "+":
+                        operation = "plus";
+                        break;
+                    case "-":
+                        operation = "minus";
+                        break;
+                    case "*":
+                        operation = "times";
+                        break;
+                    case "/":
+                        operation = "divided by";
+                        break;
+                    case "%":
+                        operation = "modulo";
+                        break;
+                    default:
+                        operation = null;
+                        Console.WriteLine(Properties.Constants.InvalidOperatorPrompt);
+                        break;
+                }
+
+                if (result != 0)
+                {
+                    Console.WriteLine("The value " + $"{firstNumber} {operation}" + " the value " + $"{secondNumber}" + " is equal to " + $"{result}");
                 }
 
             } catch (Exception ex)
             {
-                // Normally, we'd log this error to a file.
                 Console.WriteLine(ex.Message);
             }
 
