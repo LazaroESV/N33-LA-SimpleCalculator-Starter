@@ -36,18 +36,28 @@ namespace SimpleCalculator
                 switch (operation)
                 {
                     case "+":
+                    case "add":
+                    case "plus":
                         operation = "plus";
                         break;
                     case "-":
+                    case "subtract":
+                    case "minus":
                         operation = "minus";
                         break;
                     case "*":
+                    case "multiply":
+                    case "times":
                         operation = "times";
                         break;
                     case "/":
+                    case "divide":
+                    case "divided by":
                         operation = "divided by";
                         break;
                     case "%":
+                    case "modulate":
+                    case "modulo":
                         operation = "modulo";
                         break;
                     default:

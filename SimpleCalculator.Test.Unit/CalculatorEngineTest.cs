@@ -19,7 +19,7 @@ namespace SimpleCalculator.Test.Unit
             int number2 = 2;
 
             // Action
-            double? result = _calculatorEngine.Calculate("+", number1, number2);
+            double? result = _calculatorEngine.Calculate("add", number1, number2);
 
             // Assert
             Assert.AreEqual(3, result);
@@ -91,7 +91,7 @@ namespace SimpleCalculator.Test.Unit
             int number2 = 2;
 
             // Action
-            double? result = _calculatorEngine.Calculate("%", number1, number2);
+            double? result = _calculatorEngine.Calculate("modulate", number1, number2);
 
             // Assert
             Assert.AreEqual(1, result);

@@ -16,15 +16,23 @@ namespace SimpleCalculator
             switch (argOperation)
             {
                 case "+":
+                case "add":
+                case "plus":
                     result = (argFirstNumber + argSecondNumber);
                     break;
                 case "-":
+                case "subtract":
+                case "minus":
                     result = (argFirstNumber - argSecondNumber);
                     break;
                 case "*":
+                case "multiply":
+                case "times":
                     result = (argFirstNumber * argSecondNumber);
                     break;
                 case "/":
+                case "divide":
+                case "divided by":
                     if (!(argSecondNumber == 0)){
                         result = (argFirstNumber / argSecondNumber);
                     }
@@ -33,6 +41,8 @@ namespace SimpleCalculator
                     }
                         break;
                 case "%":
+                case "modulate":
+                case "modulo":
                     result = (argFirstNumber % argSecondNumber);
                     break;
                 default:
